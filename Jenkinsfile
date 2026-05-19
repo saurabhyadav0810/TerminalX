@@ -3,13 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Clone Repository') {
-            steps {
-                git branch: 'main',
-                url: 'https://github.com/saurabhyadav0810/TerminalX.git'
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 script {
@@ -21,8 +14,8 @@ pipeline {
         stage('Stop Old Container') {
             steps {
                 script {
-                    bat 'docker stop terminalx-container || exit 0'
-                    bat 'docker rm terminalx-container || exit 0'
+                    sh 'docker stop terminalx-container || true'
+                    sh 'docker rm terminalx-container || true'
                 }
             }
         }
@@ -30,10 +23,10 @@ pipeline {
         stage('Run Container') {
             steps {
                 script {
-                    bat '''
-                    docker run -d ^
-                    --name terminalx-container ^
-                    -p 3000:3000 ^
+                    sh '''
+                    docker run -d \
+                    --name terminalx-container \
+                    -p 3000:3000 \
                     terminalx
                     '''
                 }
