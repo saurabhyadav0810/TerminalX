@@ -74,7 +74,6 @@ app.get('/health', (req, res) => {
         success: true
     })
 })
-
-httpServer.listen(3000, () => {
+httpServer.listen(3000, "0.0.0.0", () => {
     console.log("Server is running on port 3000")
 })
