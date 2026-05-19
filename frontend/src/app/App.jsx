@@ -115,33 +115,46 @@ const runCode = async () => {
 
   if (!username) {
     return (
-      <main className="h-screen w-full bg-gray-950 flex gap-4 p-4 items-center justify-center" >
-        <form
-          onSubmit={handleJoin}
-          className="flex flex-col gap-4">
-          <input
-            type="text"
-            placeholder="Enter your username"
-            className="p-2 rounded-lg bg-gray-800 text-white"
-            name="username"
-          />
-          <button
-            className="p-2 rounded-lg bg-amber-50 text-gray-950 font-bold"
-          >
-            Join
-          </button>
-        </form>
+      <main className="h-screen w-full bg-gray-950 flex flex-col">
+        <header
+          className="bg-gray-900 border-b border-gray-700 p-4"
+        >
+          <h1 className="text-3xl font-bold text-amber-50">TerminalX</h1>
+        </header>
+        <div className="flex-1 flex gap-4 p-4 items-center justify-center">
+          <form
+            onSubmit={handleJoin}
+            className="flex flex-col gap-4">
+            <input
+              type="text"
+              placeholder="Enter your username"
+              className="p-2 rounded-lg bg-gray-800 text-white"
+              name="username"
+            />
+            <button
+              className="p-2 rounded-lg bg-amber-50 text-gray-950 font-bold"
+            >
+              Join
+            </button>
+          </form>
+        </div>
       </main>
     )
   }
 
   return (
     <main
-      className="h-screen w-full bg-gray-950 flex gap-4 p-4"
+      className="h-screen w-full bg-gray-950 flex flex-col"
     >
-      <aside
-        className="h-full w-1/4 bg-amber-50 rounded-lg "
+      <header
+        className="bg-gray-900 border-b border-gray-700 p-4"
       >
+        <h1 className="text-3xl font-bold text-amber-50">TerminalX</h1>
+      </header>
+      <div className="flex gap-4 p-4 flex-1">
+        <aside
+          className="h-full w-1/4 bg-amber-50 rounded-lg "
+        >
         <h2 className="text-2xl font-bold p-4 border-b border-gray-300">Users</h2>
         <ul className="p-4">
           {users.map((user) => (
@@ -177,6 +190,7 @@ const runCode = async () => {
         </div>
       </section>
 
+      </div>
     </main>
   )
 }
