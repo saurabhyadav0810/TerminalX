@@ -119,7 +119,7 @@ const runCode = async () => {
         <header
           className="bg-gray-900 border-b border-gray-700 p-4"
         >
-          <h1 className="text-3xl font-bold text-amber-50">TerminalX</h1>
+          <h1 className="text-3xl font-bold text-amber-50">Terminal</h1>
         </header>
         <div className="flex-1 flex gap-4 p-4 items-center justify-center">
           <form
@@ -149,7 +149,7 @@ const runCode = async () => {
       <header
         className="bg-gray-900 border-b border-gray-700 p-4"
       >
-        <h1 className="text-3xl font-bold text-amber-50">Terminal</h1>
+        <h1 className="text-3xl font-bold text-amber-50">TerminalX</h1>
       </header>
       <div className="flex gap-4 p-4 flex-1">
         <aside
