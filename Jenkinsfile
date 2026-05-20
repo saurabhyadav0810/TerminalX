@@ -20,13 +20,13 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    docker.build("${ECR_REPO}:${IMAGE_TAG}")
-                }
-            }
+       stage('Build Docker Image') {
+    steps {
+        script {
+            sh "docker build --no-cache -t ${ECR_REPO}:latest ."
         }
+    }
+}
 
         stage('Login to ECR') {
             steps {
@@ -45,12 +45,12 @@ pipeline {
         }
 
         stage('Push Image to ECR') {
-            steps {
-                sh '''
-                docker push $ECR_REPO:$IMAGE_TAG
-                '''
-            }
-        }
+    steps {
+        sh '''
+        docker push $ECR_REPO:latest
+        '''
+    }
+}
 
         stage('Deploy to ECS') {
             steps {
