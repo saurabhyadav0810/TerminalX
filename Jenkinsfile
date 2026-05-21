@@ -20,10 +20,10 @@ pipeline {
             }
         }
 
-       stage('Build Docker Image') {
+     stage('Build Docker Image') {
     steps {
         script {
-            sh "docker build --no-cache -t ${ECR_REPO}:latest ."
+            sh "docker build -t ${ECR_REPO}:latest ."
         }
     }
 }
