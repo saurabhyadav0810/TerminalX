@@ -1,21 +1,34 @@
-# FROM node:20-alpine
-# COPY ./backend .
-# RUN npm install
-# CMD ["node", "server.js"]
-
-#frontend
+# ---------- FRONTEND BUILD ----------
 FROM node:20-alpine AS frontend-builder
-COPY ./frontend /app
+
+ENV NODE_OPTIONS="--max-old-space-size=512"
+
 WORKDIR /app
-RUN npm install
-RUN npm run build  
+
+COPY ./frontend/package*.json ./
+
+RUN npm ci --omit=dev
+
+COPY ./frontend .
+
+RUN npm run build
 
 
-#backend
-FROM node:20-alpine 
-COPY ./backend /app
+# ---------- BACKEND ----------
+FROM node:20-alpine
+
+ENV NODE_OPTIONS="--max-old-space-size=512"
+
 WORKDIR /app
-RUN npm install
+
+COPY ./backend/package*.json ./
+
+RUN npm ci --omit=dev
+
+COPY ./backend .
+
 COPY --from=frontend-builder /app/dist /app/public
 
-CMD ["node","server.js"]
+EXPOSE 3000
+
+CMD ["node", "server.js"]
