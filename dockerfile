@@ -1,29 +1,25 @@
-# ---------- FRONTEND BUILD ----------
+# frontend build
 FROM node:20-alpine AS frontend-builder
-
-ENV NODE_OPTIONS="--max-old-space-size=512"
 
 WORKDIR /app
 
 COPY ./frontend/package*.json ./
 
-RUN npm ci --omit=dev
+RUN npm install
 
 COPY ./frontend .
 
 RUN npm run build
 
 
-# ---------- BACKEND ----------
+# backend
 FROM node:20-alpine
-
-ENV NODE_OPTIONS="--max-old-space-size=512"
 
 WORKDIR /app
 
 COPY ./backend/package*.json ./
 
-RUN npm ci --omit=dev
+RUN npm install --omit=dev
 
 COPY ./backend .
 
